@@ -7,6 +7,8 @@ public class Person {
     @Id private String id;
 
     private String firstName;
+
+    private String middleName;
     private String lastName;
 
     public String getFirstName() {
@@ -23,5 +25,13 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 }
