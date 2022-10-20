@@ -7,7 +7,7 @@ pipeline {
     stages {
        stage('GetCode') {
             steps {
-                git 'https://github.com/brolivor/Spring-Learning.git'
+                git 'https://github.com/brolivor/api.git'
             }
        }
        stage('Build') {
