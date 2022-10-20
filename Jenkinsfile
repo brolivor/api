@@ -13,7 +13,7 @@ pipeline {
        stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube v9.7') {
-                sh "mvn sonar:sonar"
+                sh "mvn sonar:sonar -Dsonar.projectKey=temp"
                 }
             }
        }
