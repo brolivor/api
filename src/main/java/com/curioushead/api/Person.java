@@ -11,6 +11,16 @@ public class Person {
     private String middleName;
     private String lastName;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String address;
+
     public String getFirstName() {
         return firstName;
     }
