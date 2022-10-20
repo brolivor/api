@@ -5,11 +5,6 @@ pipeline {
         JAVA_HOME = "/opt/jdk-18.0.2.1"
     }
     stages {
-       stage('GetCode') {
-            steps {
-                git 'https://github.com/brolivor/api.git'
-            }
-       }
        stage('Build') {
             steps {
                 sh 'mvn clean package'
