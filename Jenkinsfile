@@ -4,30 +4,19 @@ pipeline {
         maven 'maven_v3'
     }
     stages {
-        stage("test") {
+        stage("build & SonarQube analysis") {
+            agent any
             steps {
-                echo "testing the application..."
-                script  {
-                    withSonarQubeEnv('SonarQube Server')
-                    sh "mvn sonar:sonar"
-                    timeout(time: 1, unit: 'HOURS') {
-                    def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
+                withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+            }
+        }
+    }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
                 }
-            }
-        }
-        stage("build") {
-            steps {
-                echo "building the application..."
-                sh "mvn clean install"
-            }
-        }
-        stage("deploy") {
-            steps {
-                echo "deploying the application..."
             }
         }
     }
