@@ -1,20 +1,46 @@
 pipeline {
     agent any
+    environment {
+
+    }
+    tools {
+        maven 'maven_v3'
+    }
     stages {
-        stage("build") {
-            steps {
-                echo 'building the application...'
-            }
-        }
         stage("test") {
             steps {
-                echo 'testing the application...'
+                echo "testing the application..."
+                script  {
+                    withSonarQubeEnv('SonarQube Server')
+                    sh "mvn sonar:sonar"
+                }
+            }
+        }
+        def qg = waitForQualityGate()
+            if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            }
+        stage("build") {
+            steps {
+                echo "building the application..."
+                sh "mvn clean install"
             }
         }
         stage("deploy") {
             steps {
-                echo 'deploying the application...'
+                echo "deploying the application..."
             }
+        }
+    }
+    post {
+        always {
+
+        }
+        success {
+
+        }
+        failure {
+
         }
     }
 }
