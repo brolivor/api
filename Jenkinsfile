@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-
-    }
     tools {
         maven 'maven_v3'
     }
@@ -30,17 +27,6 @@ pipeline {
             steps {
                 echo "deploying the application..."
             }
-        }
-    }
-    post {
-        always {
-
-        }
-        success {
-
-        }
-        failure {
-
         }
     }
 }
