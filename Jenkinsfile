@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        stage("Uploading War to Nexus") {
+//        stage("Uploading War to Nexus") {
 //             steps {
 //                 nexusArtifactUploader artifacts:
 //                 [
@@ -64,7 +64,8 @@ pipeline {
                             version: pom.version,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
+                            artifacts:
+                            [
                                 [   artifactId: pom.artifactId,
                                     classifier: '',
                                     file: artifactPath,
