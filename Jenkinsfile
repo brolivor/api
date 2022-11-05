@@ -26,7 +26,7 @@ pipeline {
                 [
                     [   artifactId: 'api',
                         classifier: '',
-                        file: 'target/api-0.0.1-SNAPSHOT.war',
+                        file: 'target/api-1.0.0.war',
                         type: 'war'
                     ]
                 ],
@@ -36,7 +36,7 @@ pipeline {
                 nexusVersion: 'nexus3',
                 protocol: 'http',
                 repository: 'spring-boot-api-release',
-                version: '0.0.1-SNAPSHOT'
+                version: '1.0.0'
             }
         }
     }
