@@ -42,7 +42,7 @@ pipeline {
                         [
                             artifactId: 'api',
                             classifier: '',
-                            file: 'api-0.0.1-SNAPSHOT.war',
+                            file: 'target/api-0.0.1-SNAPSHOT.war',
                             type: 'war'
                         ]
                     ]
