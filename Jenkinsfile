@@ -29,20 +29,24 @@ pipeline {
         }
         stage("Publish to Nexus Repository Manager") {
             steps {
-                nexusArtifactUploader {
-                    nexusVersion('nexus3')
-                    protocol('http')
-                    nexusUrl('34.151.111.234:8081')
-                    groupId('com.curioushead')
-                    version('0.0.1-SNAPSHOT')
-                    repository('spring-boot-api-release')
-                    credentialsId('jenkins-nexus')
-                    artifact {
-                        artifactId('api')
-                        type('war')
-                        file('api-0.0.1-SNAPSHOT.war')
-                    }
-                }
+                nexusArtifactUploader (
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: '34.151.111.234:8081',
+                    groupId: 'com.curioushead',
+                    version: '0.0.1-SNAPSHOT',
+                    repository: 'spring-boot-api-release',
+                    credentialsId: 'jenkins-nexus',
+                    artifacts:
+                    [
+                        [
+                            artifactId: 'api',
+                            classifier: '',
+                            file: 'api-0.0.1-SNAPSHOT.war',
+                            type: 'war'
+                        ]
+                    ]
+                )
             }
         }
     }
