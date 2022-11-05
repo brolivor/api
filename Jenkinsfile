@@ -30,14 +30,13 @@ pipeline {
                         type: 'war'
                     ]
                 ],
-                credentialsId: '',
+                credentialsId: 'jenkins-nexus',
                 groupId: 'com.curioushead',
-                nexusUrl: '34.151.111.234',
+                nexusUrl: '34.151.111.234:8081',
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                repository: 'http://34.151.111.234:8081/repository/spring-boot-api-release/',
+                repository: 'spring-boot-api-release',
                 version: '0.0.1-SNAPSHOT'
-                }
             }
         }
     }
