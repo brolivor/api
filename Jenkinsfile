@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven_v3'
+        jdk 'openjdk-18'
     }
     stages {
         stage("build & SonarQube analysis") {
