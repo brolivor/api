@@ -10,12 +10,12 @@
 	</parent>
 	<groupId>com.curioushead</groupId>
 	<artifactId>api</artifactId>
-	<version>1.0.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>api</name>
 	<description>Spring Boot API Project</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>18</java.version>
 		<!-- JaCoCo Properties -->
 		<jacoco.version>0.8.8</jacoco.version>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -47,13 +47,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${project.parent.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
