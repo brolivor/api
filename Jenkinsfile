@@ -27,7 +27,7 @@ pipeline {
         }
         stage("Deploy to Tomcat") {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'jenkins-tomcat', path: '', url: 'http://34.151.111.234:80/')], contextPath: 'api', war: '/var/lib/jenkins/workspace/Spring_API_Pipeline@2/target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'jenkins-tomcat', path: '', url: 'http://34.151.111.234:80/')], contextPath: 'api', war: '**/*.war'
             }
         }
     }
