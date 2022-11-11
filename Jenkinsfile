@@ -35,7 +35,7 @@ pipeline {
                 nexusUrl: '192.168.1.115',
                 nexusVersion: 'nexus3',
                 protocol: 'http',
-                repository: 'http://192.168.1.115:8081/repository/spring-boot-api-release/',
+                repository: 'spring-boot-api-release',
                 version: '0.0.1'
             }
         }
