@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GoodByeServiceTest {
-    private String test = new GoodByeService().goodbye("Bye, Richa!");
+    private String test = new GoodByeService().goodbye("Bye, Richa!!!");
 
     @Test
     void goodBye() {
-        assertEquals("Bye, Richa!", test);
+        assertEquals("Bye, Richa!!!", test);
     }
 }
