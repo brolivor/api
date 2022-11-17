@@ -31,7 +31,7 @@ pipeline {
                             [
                                 classifier: '',
                                 extension: '',
-                                filePath: '/var/lib/jenkins/workspace/spring_api_project@2/target/api-0.0.1.war'
+                                filePath: 'target/api-0.0.1.war'
                             ]
                         ],
                         mavenCoordinate: [
