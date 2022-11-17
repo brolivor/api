@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Publish to Nexus Repository Manager") {
             steps {
-                nexusPublisher nexusInstanceId: 'nexus_v3', nexusRepositoryId: 'spring-boot-api-release', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/api-build-pipeline@2/target/api-0.0.1.war']], mavenCoordinate: [artifactId: 'api', groupId: 'com.curioushead', packaging: 'war', version: '0.0.1']]], tagName: 'build-0.0.1'
+                nexusPublisher nexusInstanceId: 'nexus_v3', nexusRepositoryId: 'spring-boot-api-release', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/api-build-pipeline@2/target/api-0.0.1.war']], mavenCoordinate: [artifactId: 'api', groupId: 'com.curioushead', packaging: 'war', version: '0.0.1']]]
             }
         }
         stage("Deploy to Tomcat") {
