@@ -9,11 +9,6 @@ pipeline {
         DOCKEHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-        stage("GIT Clone") {
-            steps {
-                git branch: 'Nov_2022', url: 'https://github.com/brolivor/api.git'
-            }
-        }
         stage("Build & SonarQube analysis") {
             steps {
                 withSonarQubeEnv('SonarQube Server') {
@@ -22,6 +17,13 @@ pipeline {
             }
         }
         stage("Docker Build") {
+            steps {
+                sh 'docker build . -t madhurm54/api-docker:latest'
+                sh 'echo $DOCKEHUB_CREDENTIALS_PSW | docker login -u $DOCKEHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push madhurm54/api-docker:latest'
+            }
+        }
+        stage("Deploy to Kubernetes") {
             steps {
                 sh 'docker build . -t madhurm54/api-docker:latest'
                 sh 'echo $DOCKEHUB_CREDENTIALS_PSW | docker login -u $DOCKEHUB_CREDENTIALS_USR --password-stdin'
