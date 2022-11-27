@@ -30,7 +30,6 @@ pipeline {
                     script {
                         try {
                             sh 'ssh root@192.168.1.155 kubectl apply -f .'
-                            sh 'kubectl patch svc spring-api -p '{"spec":{"externalIPs":["192.168.1.155"]}}''
                         } catch (error) {
                             sh 'ssh root@192.168.1.155 kubectl create -f .'
                         }
