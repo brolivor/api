@@ -11,7 +11,7 @@ spec:
     app: spring-api
   ports:
     - protocol: TCP
-      port: 8020
+      port: 8090
       name: http
 
 ---
@@ -33,4 +33,4 @@ spec:
         - name: spring-api
           image: madhurm54/api-docker:latest
           ports:
-            - containerPort: 8020
+            - containerPort: 8090
