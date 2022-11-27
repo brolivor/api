@@ -3,6 +3,7 @@ pipeline {
     tools {
         maven 'maven_v3'
         jdk 'openjdk-18'
+        git 'git'
     }
     stages {
         stage("GIT Clone") {
