@@ -6,9 +6,7 @@ pipeline {
     }
     environment {
         PATH="/opt/maven/bin:$PATH"
-        imageName = "api-docker"
-        registryCredentials = "nexus"
-        registry = "http://192.168.1.154:8085/"
+        DOCKEHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage("GIT Clone") {
@@ -25,10 +23,15 @@ pipeline {
         }
         stage("Docker Build") {
             steps {
-                script {
-                    dockerImage = docker.build imageName
-                }
+                sh 'docker build -t madhurm54/api-docker:latest'
+                sh 'echo $DOCKEHUB_CREDENTIALS_PSW | docker login -u $DOCKEHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push madhurm54/api-docker:latest'
             }
+        }
+    }
+    post {
+        always {
+            sh 'docker logout'
         }
     }
 }
