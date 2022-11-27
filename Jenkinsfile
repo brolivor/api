@@ -25,9 +25,16 @@ pipeline {
         }
         stage("Deploy to Kubernetes") {
             steps {
-                sh 'docker build . -t madhurm54/api-docker:latest'
-                sh 'echo $DOCKEHUB_CREDENTIALS_PSW | docker login -u $DOCKEHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push madhurm54/api-docker:latest'
+                sshagent(['k8s-master']) {
+                    sh 'scp -o StrictHostKeyChecking=no services.yaml pods.yaml node@192.168.1.156:/home/node'
+                    script {
+                        try {
+                            sh 'ssh node@192.168.1.156 kubectl apply -f .'
+                        } catch (error) {
+                            sh 'ssh node@192.168.1.156 kubectl create -f .'
+                        }
+                    }
+                }
             }
         }
     }

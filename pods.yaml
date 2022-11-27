@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkinspod
+  labels:
+    app: api
+spec:
+  containers:
+    - name: jenkinspod
+      image: madhurm54/api-docker:latest
+      ports:
+        - containerPort: 8080
