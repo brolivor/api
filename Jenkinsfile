@@ -5,7 +5,9 @@ pipeline {
     }
     stages {
         stage("GIT Clone") {
-            git branch: 'Nov_2022', url: 'https://github.com/brolivor/api.git'
+            steps {
+                git branch: 'Nov_2022', url: 'https://github.com/brolivor/api.git'
+            }
         }
         stage("Build & SonarQube analysis") {
             steps {
