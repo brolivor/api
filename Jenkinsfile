@@ -25,7 +25,7 @@ pipeline {
         }
         stage("Deploy to Kubernetes") {
             steps {
-                sshagent(['k8s-master']) {
+                sshagent(['k3s-node-1']) {
                     sh 'scp -o StrictHostKeyChecking=no services.yaml pods.yaml node@192.168.1.157:/home/node'
                     script {
                         try {
