@@ -6,6 +6,9 @@ pipeline {
     }
     environment {
         PATH="/opt/maven/bin:$PATH"
+        imageName = "api-docker"
+        registryCredentials = "nexus"
+        registry = "http://192.168.1.154:8085/"
     }
     stages {
         stage("GIT Clone") {
@@ -22,7 +25,9 @@ pipeline {
         }
         stage("Docker Build") {
             steps {
-                sh 'docker version'
+                script {
+                    dockerImage = docker.build imageName
+                }
             }
         }
     }
