@@ -1,10 +1,36 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: v1
+kind: Service
 metadata:
-  name: jenkins-ingress
+  name: spring-api
+  labels:
+    app: spring-api
 spec:
-  defaultBackend:
-    service:
-      name: api
-      port:
-        number: 80
+  type: NodePort
+  selector:
+    app: spring-api
+  ports:
+    - protocol: TCP
+      port: 8020
+      name: http
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-api
+spec:
+  selector:
+    matchLabels:
+      app: spring-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spring-api
+    spec:
+      containers:
+        - name: spring-api
+          image: madhurm54/api-docker:latest
+          ports:
+            - containerPort: 8020
