@@ -4,7 +4,7 @@ pipeline {
         maven 'maven_v3'
         jdk 'openjdk-18'
     }
-    stages {
+    steps {
         stage("GIT Clone") {
             git branch: 'Nov_2022', url: 'https://github.com/brolivor/api.git'
         }
