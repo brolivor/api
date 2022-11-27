@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven_v3'
+        jdk 'openjdk-18'
+    }
     environment {
         PATH="/opt/maven/bin:$PATH"
     }
