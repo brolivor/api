@@ -25,13 +25,13 @@ pipeline {
         }
         stage("Deploy to Kubernetes") {
             steps {
-                sshagent(['k3s-node-1']) {
-                    sh 'scp -o StrictHostKeyChecking=no services.yaml pods.yaml root@192.168.1.156:/root'
+                sshagent(['k8s-master']) {
+                    sh 'scp -o StrictHostKeyChecking=no services.yaml pods.yaml root@192.168.1.155:/root'
                     script {
                         try {
-                            sh 'ssh root@192.168.1.156 kubectl apply -f .'
+                            sh 'ssh root@192.168.1.155 kubectl apply -f .'
                         } catch (error) {
-                            sh 'ssh root@192.168.1.156 kubectl create -f .'
+                            sh 'ssh root@192.168.1.155 kubectl create -f .'
                         }
                     }
                 }
